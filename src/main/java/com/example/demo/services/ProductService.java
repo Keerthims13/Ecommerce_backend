@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
-import com.example.demo.models.product.Product;
+import com.example.demo.models.Product;
+import com.example.demo.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,12 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+    // Update deleteProduct to return a boolean indicating success or failure
+    public boolean deleteProduct(Long id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true; // Return true if the product was deleted successfully
+        }
+        return false; // Return false if the product was not found
     }
 }
-

@@ -21,5 +21,6 @@ public class Product {
     private BigDecimal price;
 
     private int stock;
-}
 
+    private String imageUrl; // Added if you want to store image
+}
